@@ -39,7 +39,6 @@ $(function() {
          });
 
 
-
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
@@ -68,12 +67,19 @@ $(function() {
          });
 
 
-
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+          let menuIcon = document.querySelector('.menu-icon-link');
+          
+          it('menu is displayed when clicked and hidden when clicked again', () => {
+            menuIcon.click();
+            expect(body.classList.contains('menu-hidden')).toBe(false);
+            menuIcon.click();
+            expect(body.classList.contains('menu-hidden')).toBe(true);
+          });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
