@@ -92,8 +92,7 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-         // done is passed in as an argument to the beforeEach function
-         // loadFeed starts with "0", runs and finishes working
+         // done is passed in as an argument to the beforeEach function; loadFeed starts with "0", runs and finishes working
          beforeEach((done) => {
            loadFeed(0, () => {
              done();
@@ -114,5 +113,23 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-  });
+         let oldFeeds;
+         let newFeeds;
+
+         beforeEach((done) => {
+           loadFeed(0, () => {
+             oldFeeds = document.querySelector(".feed").innerHTML;
+             loadFeed(1, () => {
+               newFeeds = document.querySelector(".feed").innerHTML;
+               done();
+           });
+         });
+       });
+
+       it('content changes when a new feed is loaded', ((done) => {
+         expect(oldFeeds).not.toEqual(newFeeds);
+         done();
+       }));
+     });
+
 }());
