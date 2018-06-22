@@ -21,6 +21,7 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
+
         it('allFeeds variable is defined and not empty', () => {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
@@ -31,6 +32,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+
          it('URL is defined and not empty', () => {
            allFeeds.forEach((feed) => {
              expect(feed.url).toBeDefined();
@@ -43,6 +45,7 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
          it('feed name is defined and not empty', () => {
            allFeeds.forEach((feed) => {
              expect(feed.name).toBeDefined();
@@ -60,6 +63,9 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+
+         //menu visibilty is determined by <body> class named 'menu-hidden'; test checks if the body contains the class 'menu-hidden'
+
          let body = document.body;
 
          it('menu element is hidden by default', () => {
@@ -72,6 +78,9 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+
+          //menu visibilty is determined by <body> class named 'menu-hidden'; test checks if the body contains the class 'menu-hidden' when clicked and when clicked again
+
           let menuIcon = document.querySelector('.menu-icon-link');
 
           it('menu is displayed when clicked and hidden when clicked again', () => {
@@ -92,12 +101,15 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-         // done is passed in as an argument to the beforeEach function; loadFeed starts with "0", runs and finishes working
+         // done is passed in as an argument to the beforeEach function; loadFeed() starts with "0", runs and completes working
+
          beforeEach((done) => {
            loadFeed(0, () => {
              done();
            });
          });
+
+        // after loadFeed() is called and completed, the test checks if there is at least a single .entry element inside
 
         it('after loadFeed() is called there is at least a single .entry element within the .feed container', ((done) => {
           let lengthEntries = document.querySelector('.feed').getElementsByClassName('entry').length;
@@ -113,18 +125,23 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
+         // tests loads 2 new feed sets and compare them, to see if the content has actually changed
+
          let oldFeeds;
          let newFeeds;
 
          beforeEach((done) => {
-           loadFeed(0, () => {
+           loadFeed(0, () => { //load first feed set
              oldFeeds = document.querySelector(".feed").innerHTML;
-             loadFeed(1, () => {
+             loadFeed(1, () => { //load second feed set
                newFeeds = document.querySelector(".feed").innerHTML;
                done();
            });
          });
        });
+
+       // expactation for comparing the feeds
 
        it('content changes when a new feed is loaded', ((done) => {
          expect(oldFeeds).not.toEqual(newFeeds);
