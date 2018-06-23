@@ -105,7 +105,7 @@ $(function() {
         // After loadFeed() is called and completed, the test checks if there is at least a single .entry element inside
 
         it('after loadFeed() is called there is at least a single .entry element within the .feed container', ((done) => {
-          let lengthEntries = document.querySelector('.feed').getElementsByClassName('entry').length;
+          let lengthEntries = document.querySelectorAll('.feed .entry').length;
           expect(lengthEntries).toBeGreaterThan(0);
           done();
         }));
