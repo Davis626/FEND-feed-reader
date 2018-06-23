@@ -2,8 +2,7 @@
 
 ## Project Overview
 
-Feed reader testing - project of the Udacity Front-End Web Developer Nanodegree Program
-Purpose of the project was to learn about "test-driven development" using Jasmine.
+Feed reader testing - project of the Udacity Front-End Web Developer Nanodegree Program. Purpose of the project was to learn about "test-driven development" using Jasmine.
 
 ## Dependencies
 
